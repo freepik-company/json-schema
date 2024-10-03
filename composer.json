@@ -28,12 +28,13 @@
     ],
     "require": {
         "php": "^7.2 || ^8.0",
+        "ext-json": "*",
         "marc-mabe/php-enum":"^2.0 || ^3.0 || ^4.0",
         "icecave/parity": "^3.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "~2.2.20 || ~2.19.0",
-        "json-schema/json-schema-test-suite": "1.2.0",
+        "json-schema/json-schema-test-suite": "2.0.0",
         "phpunit/phpunit": "^8.5",
         "phpspec/prophecy": "^1.19",
         "phpstan/phpstan": "^1.12",
@@ -59,11 +60,11 @@
             "type": "package",
             "package": {
                 "name": "json-schema/json-schema-test-suite",
-                "version": "1.2.0",
+                "version": "2.0.0",
                 "source": {
                     "type": "git",
                     "url": "https://github.com/json-schema/JSON-Schema-Test-Suite",
-                    "reference": "1.2.0"
+                    "reference": "2.0.0"
                 }
             }
         }
