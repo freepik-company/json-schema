@@ -1,8 +1,8 @@
 <?php
 
-namespace JsonSchema\Tests\Exception;
+namespace FPJsonSchema\Tests\Exception;
 
-use JsonSchema\Exception\UriResolverException;
+use FPJsonSchema\Exception\UriResolverException;
 use PHPUnit\Framework\TestCase;
 
 class UriResolverExceptionTest extends TestCase
@@ -11,7 +11,7 @@ class UriResolverExceptionTest extends TestCase
     {
         $exception = new UriResolverException();
         self::assertInstanceOf('\RuntimeException', $exception);
-        self::assertInstanceOf('\JsonSchema\Exception\RuntimeException', $exception);
-        self::assertInstanceOf('\JsonSchema\Exception\ExceptionInterface', $exception);
+        self::assertInstanceOf('\FPJsonSchema\Exception\RuntimeException', $exception);
+        self::assertInstanceOf('\FPJsonSchema\Exception\ExceptionInterface', $exception);
     }
 }

@@ -1,20 +1,20 @@
 <?php
 
 /*
- * This file is part of the JsonSchema package.
+ * This file is part of the FPJsonSchema package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace JsonSchema\Tests\Uri;
+namespace FPJsonSchema\Tests\Uri;
 
-use JsonSchema\Exception\InvalidSchemaMediaTypeException;
-use JsonSchema\Exception\JsonDecodingException;
-use JsonSchema\Exception\ResourceNotFoundException;
-use JsonSchema\Exception\UriResolverException;
-use JsonSchema\Uri\UriRetriever;
-use JsonSchema\Validator;
+use FPJsonSchema\Exception\InvalidSchemaMediaTypeException;
+use FPJsonSchema\Exception\JsonDecodingException;
+use FPJsonSchema\Exception\ResourceNotFoundException;
+use FPJsonSchema\Exception\UriResolverException;
+use FPJsonSchema\Uri\UriRetriever;
+use FPJsonSchema\Validator;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -31,18 +31,18 @@ class UriRetrieverTest extends TestCase
 
     private function getRetrieverMock($returnSchema)
     {
-        $jsonSchema = json_decode($returnSchema);
+        $FPJsonSchema = json_decode($returnSchema);
 
         if (JSON_ERROR_NONE < $error = json_last_error()) {
             throw new JsonDecodingException($error);
         }
 
-        $retriever = $this->createMock('JsonSchema\Uri\UriRetriever');
+        $retriever = $this->createMock('FPJsonSchema\Uri\UriRetriever');
 
         $retriever->expects($this->at(0))
                   ->method('retrieve')
                   ->with($this->equalTo(null), $this->equalTo('http://some.host.at/somewhere/parent'))
-                  ->willReturn($jsonSchema);
+                  ->willReturn($FPJsonSchema);
 
         return $retriever;
     }
@@ -56,9 +56,9 @@ class UriRetrieverTest extends TestCase
 
         $json = '{"childProp":"infant", "parentProp":false}';
         $decodedJson = json_decode($json);
-        $decodedJsonSchema = json_decode($childSchema);
+        $decodedFPJsonSchema = json_decode($childSchema);
 
-        $this->validator->validate($decodedJson, $decodedJsonSchema);
+        $this->validator->validate($decodedJson, $decodedFPJsonSchema);
         $this->assertTrue($this->validator->isValid());
     }
 
@@ -71,9 +71,9 @@ class UriRetrieverTest extends TestCase
 
         $json = '{"childProp":1, "parentProp":false}';
         $decodedJson = json_decode($json);
-        $decodedJsonSchema = json_decode($childSchema);
+        $decodedFPJsonSchema = json_decode($childSchema);
 
-        $this->validator->validate($decodedJson, $decodedJsonSchema);
+        $this->validator->validate($decodedJson, $decodedFPJsonSchema);
         $this->assertFalse($this->validator->isValid());
     }
 
@@ -86,9 +86,9 @@ class UriRetrieverTest extends TestCase
 
         $json = '{"childProp":"infant", "parentProp":1}';
         $decodedJson = json_decode($json);
-        $decodedJsonSchema = json_decode($childSchema);
+        $decodedFPJsonSchema = json_decode($childSchema);
 
-        $this->validator->validate($decodedJson, $decodedJsonSchema);
+        $this->validator->validate($decodedJson, $decodedFPJsonSchema);
         $this->assertFalse($this->validator->isValid());
     }
 
@@ -102,9 +102,9 @@ class UriRetrieverTest extends TestCase
 
         $json = '{"childProp":"infant", "parentProp":false}';
         $decodedJson = json_decode($json);
-        $decodedJsonSchema = json_decode($childSchema);
+        $decodedFPJsonSchema = json_decode($childSchema);
 
-        $this->validator->validate($decodedJson, $decodedJsonSchema);
+        $this->validator->validate($decodedJson, $decodedFPJsonSchema);
         $this->assertTrue($this->validator->isValid());
     }
 
@@ -233,9 +233,9 @@ EOF;
         );
     }
 
-    public function testConfirmMediaTypeAcceptsJsonSchemaType(): void
+    public function testConfirmMediaTypeAcceptsFPJsonSchemaType(): void
     {
-        $uriRetriever = $this->createMock('JsonSchema\Uri\Retrievers\UriRetrieverInterface');
+        $uriRetriever = $this->createMock('FPJsonSchema\Uri\Retrievers\UriRetrieverInterface');
         $retriever = new UriRetriever();
 
         $uriRetriever->expects($this->at(0))
@@ -247,7 +247,7 @@ EOF;
 
     public function testConfirmMediaTypeAcceptsJsonType(): void
     {
-        $uriRetriever = $this->createMock('JsonSchema\Uri\Retrievers\UriRetrieverInterface');
+        $uriRetriever = $this->createMock('FPJsonSchema\Uri\Retrievers\UriRetrieverInterface');
         $retriever = new UriRetriever();
 
         $uriRetriever->expects($this->at(0))
@@ -259,7 +259,7 @@ EOF;
 
     public function testConfirmMediaTypeThrowsExceptionForUnsupportedTypes(): void
     {
-        $uriRetriever = $this->createMock('JsonSchema\Uri\Retrievers\UriRetrieverInterface');
+        $uriRetriever = $this->createMock('FPJsonSchema\Uri\Retrievers\UriRetrieverInterface');
         $retriever = new UriRetriever();
         $uriRetriever->expects($this->at(0))
                 ->method('getContentType')
@@ -274,11 +274,11 @@ EOF;
     {
         $retrieverMock = $this->getRetrieverMock($schema);
 
-        $factory = new \ReflectionProperty('JsonSchema\Constraints\BaseConstraint', 'factory');
+        $factory = new \ReflectionProperty('FPJsonSchema\Constraints\BaseConstraint', 'factory');
         $factory->setAccessible(true);
         $factory = $factory->getValue($this->validator);
 
-        $retriever = new \ReflectionProperty('JsonSchema\Constraints\Factory', 'uriRetriever');
+        $retriever = new \ReflectionProperty('FPJsonSchema\Constraints\Factory', 'uriRetriever');
         $retriever->setAccessible(true);
         $retriever->setValue($factory, $retrieverMock);
     }
@@ -333,7 +333,7 @@ EOF;
 
     public function testInvalidContentTypeEndpointsDefault(): void
     {
-        $mock = $this->createMock('JsonSchema\Uri\Retrievers\UriRetrieverInterface');
+        $mock = $this->createMock('FPJsonSchema\Uri\Retrievers\UriRetrieverInterface');
         $mock->method('getContentType')->willReturn('Application/X-Fake-Type');
         $retriever = new UriRetriever();
 
@@ -343,7 +343,7 @@ EOF;
 
     public function testInvalidContentTypeEndpointsUnknown(): void
     {
-        $mock = $this->createMock('JsonSchema\Uri\Retrievers\UriRetrieverInterface');
+        $mock = $this->createMock('FPJsonSchema\Uri\Retrievers\UriRetrieverInterface');
         $mock->method('getContentType')->willReturn('Application/X-Fake-Type');
         $retriever = new UriRetriever();
 
@@ -353,7 +353,7 @@ EOF;
 
     public function testInvalidContentTypeEndpointsAdded(): void
     {
-        $mock = $this->createMock('JsonSchema\Uri\Retrievers\UriRetrieverInterface');
+        $mock = $this->createMock('FPJsonSchema\Uri\Retrievers\UriRetrieverInterface');
         $mock->method('getContentType')->willReturn('Application/X-Fake-Type');
         $retriever = new UriRetriever();
         $retriever->addInvalidContentTypeEndpoint('http://example.com');
@@ -386,7 +386,7 @@ EOF;
     {
         $retriever = new UriRetriever();
 
-        $this->expectException('JsonSchema\Exception\JsonDecodingException');
+        $this->expectException('FPJsonSchema\Exception\JsonDecodingException');
         $this->expectExceptionMessage('JSON syntax is malformed');
 
         $retriever->retrieve('package://tests/fixtures/bad-syntax.json');

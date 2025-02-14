@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the JsonSchema package.
+ * This file is part of the FPJsonSchema package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace JsonSchema\Tests;
+namespace FPJsonSchema\Tests;
 
-use JsonSchema\Validator;
+use FPJsonSchema\Validator;
 use PHPUnit\Framework\TestCase;
 
 class RefTest extends TestCase
@@ -56,7 +56,7 @@ class RefTest extends TestCase
                 }',
                 '{"propertyOne": 5}',
                 true,
-                '\JsonSchema\Exception\UnresolvableJsonPointerException'
+                '\FPJsonSchema\Exception\UnresolvableJsonPointerException'
             ]
         ];
     }

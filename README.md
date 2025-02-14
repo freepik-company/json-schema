@@ -38,7 +38,7 @@ __Note:__ features of Drafts newer than Draft-4 might not be supported!
 $data = json_decode(file_get_contents('data.json'));
 
 // Validate
-$validator = new JsonSchema\Validator;
+$validator = new FPJsonSchema\Validator;
 $validator->validate($data, (object)['$ref' => 'file://' . realpath('schema.json')]);
 
 if ($validator->isValid()) {
@@ -59,10 +59,10 @@ the expected types defined by your schema:
 ```php
 <?php
 
-use JsonSchema\SchemaStorage;
-use JsonSchema\Validator;
-use JsonSchema\Constraints\Factory;
-use JsonSchema\Constraints\Constraint;
+use FPJsonSchema\SchemaStorage;
+use FPJsonSchema\Validator;
+use FPJsonSchema\Constraints\Factory;
+use FPJsonSchema\Constraints\Constraint;
 
 $request = (object)[
     'processRefund'=>"true",
@@ -101,8 +101,8 @@ If your schema contains default values, you can have these automatically applied
 ```php
 <?php
 
-use JsonSchema\Validator;
-use JsonSchema\Constraints\Constraint;
+use FPJsonSchema\Validator;
+use FPJsonSchema\Constraints\Constraint;
 
 $request = (object)[
     'refundAmount'=>17
@@ -133,11 +133,11 @@ $request->processRefund; // true
 ```php
 <?php
 
-use JsonSchema\SchemaStorage;
-use JsonSchema\Validator;
-use JsonSchema\Constraints\Factory;
+use FPJsonSchema\SchemaStorage;
+use FPJsonSchema\Validator;
+use FPJsonSchema\Constraints\Factory;
 
-$jsonSchema = <<<'JSON'
+$FPJsonSchema = <<<'JSON'
 {
     "type": "object",
     "properties": {
@@ -162,15 +162,15 @@ $jsonSchema = <<<'JSON'
 JSON;
 
 // Schema must be decoded before it can be used for validation
-$jsonSchemaObject = json_decode($jsonSchema);
+$FPJsonSchemaObject = json_decode($FPJsonSchema);
 
 // The SchemaStorage can resolve references, loading additional schemas from file as needed, etc.
 $schemaStorage = new SchemaStorage();
 
 // This does two things:
-// 1) Mutates $jsonSchemaObject to normalize the references (to file://mySchema#/definitions/integerData, etc)
-// 2) Tells $schemaStorage that references to file://mySchema... should be resolved by looking in $jsonSchemaObject
-$schemaStorage->addSchema('file://mySchema', $jsonSchemaObject);
+// 1) Mutates $FPJsonSchemaObject to normalize the references (to file://mySchema#/definitions/integerData, etc)
+// 2) Tells $schemaStorage that references to file://mySchema... should be resolved by looking in $FPJsonSchemaObject
+$schemaStorage->addSchema('file://mySchema', $FPJsonSchemaObject);
 
 // Provide $schemaStorage to the Validator so that references can be resolved during validation
 $jsonValidator = new Validator(new Factory($schemaStorage));
@@ -179,7 +179,7 @@ $jsonValidator = new Validator(new Factory($schemaStorage));
 $jsonToValidateObject = json_decode('{"data":123}');
 
 // Do validation (use isValid() and getErrors() to check the result)
-$jsonValidator->validate($jsonToValidateObject, $jsonSchemaObject);
+$jsonValidator->validate($jsonToValidateObject, $FPJsonSchemaObject);
 ```
 
 ### Configuration Options

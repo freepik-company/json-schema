@@ -1,8 +1,8 @@
 <?php
 
-namespace JsonSchema\Tests\Uri\Retrievers;
+namespace FPJsonSchema\Tests\Uri\Retrievers;
 
-use JsonSchema\Uri\Retrievers\FileGetContents;
+use FPJsonSchema\Uri\Retrievers\FileGetContents;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -14,7 +14,7 @@ class FileGetContentsTest extends TestCase
     {
         $res = new FileGetContents();
 
-        $this->expectException(\JsonSchema\Exception\ResourceNotFoundException::class);
+        $this->expectException(\FPJsonSchema\Exception\ResourceNotFoundException::class);
 
         $res->retrieve(__DIR__ . '/Fixture/missing.json');
     }

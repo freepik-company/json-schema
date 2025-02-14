@@ -1,8 +1,8 @@
 <?php
 
-namespace JsonSchema\Tests\Uri\Retrievers
+namespace FPJsonSchema\Tests\Uri\Retrievers
 {
-    use JsonSchema\Uri\Retrievers\Curl;
+    use FPJsonSchema\Uri\Retrievers\Curl;
     use PHPUnit\Framework\TestCase;
 
     class CurlTest extends TestCase
@@ -19,7 +19,7 @@ namespace JsonSchema\Tests\Uri\Retrievers
         {
             $c = new Curl();
 
-            $this->expectException('\JsonSchema\Exception\ResourceNotFoundException');
+            $this->expectException('\FPJsonSchema\Exception\ResourceNotFoundException');
             $this->expectExceptionMessage('JSON schema not found');
 
             $c->retrieve(__DIR__ . '/notARealFile');
@@ -35,7 +35,7 @@ namespace JsonSchema\Tests\Uri\Retrievers
     }
 }
 
-namespace JsonSchema\Uri\Retrievers
+namespace FPJsonSchema\Uri\Retrievers
 {
     function curl_exec($curl)
     {

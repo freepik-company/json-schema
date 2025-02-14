@@ -1,19 +1,19 @@
 <?php
 
 /*
- * This file is part of the JsonSchema package.
+ * This file is part of the FPJsonSchema package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace JsonSchema\Tests\Entity;
+namespace FPJsonSchema\Tests\Entity;
 
-use JsonSchema\Entity\JsonPointer;
+use FPJsonSchema\Entity\JsonPointer;
 use PHPUnit\Framework\TestCase;
 
 /**
- * @package JsonSchema\Tests\Entity
+ * @package FPJsonSchema\Tests\Entity
  *
  * @author Joost Nijhuis <jnijhuis81@gmail.com>
  */
@@ -110,7 +110,7 @@ class JsonPointerTest extends TestCase
 
     public function testCreateWithInvalidValue(): void
     {
-        $this->expectException('\JsonSchema\Exception\InvalidArgumentException');
+        $this->expectException('\FPJsonSchema\Exception\InvalidArgumentException');
         $this->expectExceptionMessage('Ref value must be a string');
 
         new JsonPointer(null);

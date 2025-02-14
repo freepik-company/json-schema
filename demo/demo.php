@@ -5,7 +5,7 @@ require __DIR__ . '/../vendor/autoload.php';
 $data = json_decode(file_get_contents('data.json'));
 
 // Validate
-$validator = new JsonSchema\Validator();
+$validator = new FPJsonSchema\Validator();
 $validator->validate($data, (object) ['$ref' => 'file://' . realpath('schema.json')]);
 
 if ($validator->isValid()) {

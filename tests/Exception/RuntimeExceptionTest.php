@@ -1,8 +1,8 @@
 <?php
 
-namespace JsonSchema\Tests\Exception;
+namespace FPJsonSchema\Tests\Exception;
 
-use JsonSchema\Exception\RuntimeException;
+use FPJsonSchema\Exception\RuntimeException;
 use PHPUnit\Framework\TestCase;
 
 class RuntimeExceptionTest extends TestCase
@@ -11,6 +11,6 @@ class RuntimeExceptionTest extends TestCase
     {
         $exception = new RuntimeException();
         self::assertInstanceOf('\RuntimeException', $exception);
-        self::assertInstanceOf('\JsonSchema\Exception\ExceptionInterface', $exception);
+        self::assertInstanceOf('\FPJsonSchema\Exception\ExceptionInterface', $exception);
     }
 }

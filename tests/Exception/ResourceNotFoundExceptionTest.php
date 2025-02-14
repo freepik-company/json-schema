@@ -1,8 +1,8 @@
 <?php
 
-namespace JsonSchema\Tests\Exception;
+namespace FPJsonSchema\Tests\Exception;
 
-use JsonSchema\Exception\ResourceNotFoundException;
+use FPJsonSchema\Exception\ResourceNotFoundException;
 use PHPUnit\Framework\TestCase;
 
 class ResourceNotFoundExceptionTest extends TestCase
@@ -11,7 +11,7 @@ class ResourceNotFoundExceptionTest extends TestCase
     {
         $exception = new ResourceNotFoundException();
         self::assertInstanceOf('\RuntimeException', $exception);
-        self::assertInstanceOf('\JsonSchema\Exception\RuntimeException', $exception);
-        self::assertInstanceOf('\JsonSchema\Exception\ExceptionInterface', $exception);
+        self::assertInstanceOf('\FPJsonSchema\Exception\RuntimeException', $exception);
+        self::assertInstanceOf('\FPJsonSchema\Exception\ExceptionInterface', $exception);
     }
 }

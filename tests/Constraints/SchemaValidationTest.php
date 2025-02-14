@@ -1,16 +1,16 @@
 <?php
 
 /*
- * This file is part of the JsonSchema package.
+ * This file is part of the FPJsonSchema package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace JsonSchema\Tests\Constraints;
+namespace FPJsonSchema\Tests\Constraints;
 
-use JsonSchema\Constraints\Constraint;
-use JsonSchema\Validator;
+use FPJsonSchema\Constraints\Constraint;
+use FPJsonSchema\Validator;
 use PHPUnit\Framework\TestCase;
 
 class SchemaValidationTest extends TestCase
@@ -102,7 +102,7 @@ class SchemaValidationTest extends TestCase
 
     public function testNonObjectSchema(): void
     {
-        $this->expectException('\JsonSchema\Exception\RuntimeException');
+        $this->expectException('\FPJsonSchema\Exception\RuntimeException');
         $this->expectExceptionMessage('Cannot validate the schema of a non-object');
 
         $this->testValidCases('"notAnObject"');
@@ -110,7 +110,7 @@ class SchemaValidationTest extends TestCase
 
     public function testInvalidSchemaException(): void
     {
-        $this->expectException('\JsonSchema\Exception\InvalidSchemaException');
+        $this->expectException('\FPJsonSchema\Exception\InvalidSchemaException');
         $this->expectExceptionMessage('Schema did not pass validation');
 
         $input = json_decode('{}');

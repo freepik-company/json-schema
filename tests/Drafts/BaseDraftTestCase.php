@@ -1,11 +1,11 @@
 <?php
 
-namespace JsonSchema\Tests\Drafts;
+namespace FPJsonSchema\Tests\Drafts;
 
-use JsonSchema\Tests\Constraints\BaseTestCase;
+use FPJsonSchema\Tests\Constraints\BaseTestCase;
 
 /**
- * @package JsonSchema\Tests\Drafts
+ * @package FPJsonSchema\Tests\Drafts
  */
 abstract class BaseDraftTestCase extends BaseTestCase
 {

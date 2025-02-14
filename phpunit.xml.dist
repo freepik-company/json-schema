@@ -21,7 +21,7 @@
 
     <filter>
         <whitelist>
-            <directory>./src/JsonSchema/</directory>
+            <directory>./src/FPJsonSchema/</directory>
         </whitelist>
     </filter>
 </phpunit>

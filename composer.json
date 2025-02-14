@@ -1,5 +1,5 @@
 {
-    "name": "justinrainbow/json-schema",
+    "name": "freepik-company/json-schema",
     "type": "library",
     "description": "A library to validate a json schema.",
     "keywords": [
@@ -27,7 +27,7 @@
         }
     ],
     "require": {
-        "php": "^7.2 || ^8.0",
+        "php": "^7.2 || ,^8.0",
         "ext-json": "*",
         "marc-mabe/php-enum":"^2.0 || ^3.0 || ^4.0",
         "icecave/parity": "^3.0"
@@ -47,12 +47,12 @@
     },
     "autoload": {
         "psr-4": {
-            "JsonSchema\\": "src/JsonSchema/"
+            "FPJsonSchema\\": "src/FPJsonSchema/"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "JsonSchema\\Tests\\": "tests/"
+            "FPJsonSchema\\Tests\\": "tests/"
         }
     },
     "repositories": [

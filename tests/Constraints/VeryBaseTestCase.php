@@ -1,27 +1,27 @@
 <?php
 
 /*
- * This file is part of the JsonSchema package.
+ * This file is part of the FPJsonSchema package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace JsonSchema\Tests\Constraints;
+namespace FPJsonSchema\Tests\Constraints;
 
 use PHPUnit\Framework\TestCase;
 use Prophecy\Argument;
 
 /**
- * @package JsonSchema\Tests\Constraints
+ * @package FPJsonSchema\Tests\Constraints
  */
 abstract class VeryBaseTestCase extends TestCase
 {
     /** @var object */
-    private $jsonSchemaDraft03;
+    private $FPJsonSchemaDraft03;
 
     /** @var object */
-    private $jsonSchemaDraft04;
+    private $FPJsonSchemaDraft04;
 
     /**
      * @param object $schema
@@ -30,20 +30,20 @@ abstract class VeryBaseTestCase extends TestCase
     {
         $relativeTestsRoot = realpath(__DIR__ . '/../../vendor/json-schema/json-schema-test-suite/remotes');
 
-        $jsonSchemaDraft03 = $this->getJsonSchemaDraft03();
-        $jsonSchemaDraft04 = $this->getJsonSchemaDraft04();
+        $FPJsonSchemaDraft03 = $this->getFPJsonSchemaDraft03();
+        $FPJsonSchemaDraft04 = $this->getFPJsonSchemaDraft04();
 
-        $uriRetriever = $this->prophesize('JsonSchema\UriRetrieverInterface');
+        $uriRetriever = $this->prophesize('FPJsonSchema\UriRetrieverInterface');
         $uriRetriever->retrieve('http://www.my-domain.com/schema.json')
             ->willReturn($schema)
             ->shouldBeCalled();
 
         $uriRetriever->retrieve(Argument::any())
-            ->will(function ($args) use ($jsonSchemaDraft03, $jsonSchemaDraft04, $relativeTestsRoot) {
+            ->will(function ($args) use ($FPJsonSchemaDraft03, $FPJsonSchemaDraft04, $relativeTestsRoot) {
                 if ('http://json-schema.org/draft-03/schema' === $args[0]) {
-                    return $jsonSchemaDraft03;
+                    return $FPJsonSchemaDraft03;
                 } elseif ('http://json-schema.org/draft-04/schema' === $args[0]) {
-                    return $jsonSchemaDraft04;
+                    return $FPJsonSchemaDraft04;
                 } elseif (0 === strpos($args[0], 'http://localhost:1234')) {
                     $urlParts = parse_url($args[0]);
 
@@ -58,25 +58,25 @@ abstract class VeryBaseTestCase extends TestCase
         return $uriRetriever->reveal();
     }
 
-    private function getJsonSchemaDraft03(): object
+    private function getFPJsonSchemaDraft03(): object
     {
-        if (!$this->jsonSchemaDraft03) {
-            $this->jsonSchemaDraft03 = json_decode(
+        if (!$this->FPJsonSchemaDraft03) {
+            $this->FPJsonSchemaDraft03 = json_decode(
                 file_get_contents(__DIR__ . '/../../dist/schema/json-schema-draft-03.json')
             );
         }
 
-        return $this->jsonSchemaDraft03;
+        return $this->FPJsonSchemaDraft03;
     }
 
-    private function getJsonSchemaDraft04(): object
+    private function getFPJsonSchemaDraft04(): object
     {
-        if (!$this->jsonSchemaDraft04) {
-            $this->jsonSchemaDraft04 = json_decode(
+        if (!$this->FPJsonSchemaDraft04) {
+            $this->FPJsonSchemaDraft04 = json_decode(
                 file_get_contents(__DIR__ . '/../../dist/schema/json-schema-draft-04.json')
             );
         }
 
-        return $this->jsonSchemaDraft04;
+        return $this->FPJsonSchemaDraft04;
     }
 }

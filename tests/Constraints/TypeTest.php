@@ -1,22 +1,22 @@
 <?php
 
 /*
- * This file is part of the JsonSchema package.
+ * This file is part of the FPJsonSchema package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace JsonSchema\Tests\Constraints;
+namespace FPJsonSchema\Tests\Constraints;
 
-use JsonSchema\Constraints\TypeCheck\LooseTypeCheck;
-use JsonSchema\Constraints\TypeConstraint;
+use FPJsonSchema\Constraints\TypeCheck\LooseTypeCheck;
+use FPJsonSchema\Constraints\TypeConstraint;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class TypeTest
  *
- * @package JsonSchema\Tests\Constraints
+ * @package FPJsonSchema\Tests\Constraints
  *
  * @author hakre <https://github.com/hakre>
  */
@@ -136,7 +136,7 @@ class TypeTest extends TestCase
         $data = new \stdClass();
         $schema = json_decode('{"type": "notAValidTypeName"}');
 
-        $this->expectException('JsonSchema\Exception\InvalidArgumentException');
+        $this->expectException('FPJsonSchema\Exception\InvalidArgumentException');
         $this->expectExceptionMessage('object is an invalid type for notAValidTypeName');
 
         $t->check($data, $schema);

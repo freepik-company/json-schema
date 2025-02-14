@@ -1,9 +1,9 @@
-.. JsonSchema documentation master file, created by
+.. FPJsonSchema documentation master file, created by
    sphinx-quickstart on Sat Dec 10 15:34:44 2011.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to JsonSchema's documentation!
+Welcome to FPJsonSchema's documentation!
 ======================================
 
 Contents:
@@ -40,7 +40,7 @@ Usage
 .. code-block:: php
    
    <?php
-   $validator = new JsonSchema\Validator();
+   $validator = new FPJsonSchema\Validator();
    $result = $validator->validate(json_decode($json), json_decode($schema));
 
    if ($result->valid) {

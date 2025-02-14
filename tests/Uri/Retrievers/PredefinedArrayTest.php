@@ -1,8 +1,8 @@
 <?php
 
-namespace JsonSchema\Tests\Uri\Retrievers;
+namespace FPJsonSchema\Tests\Uri\Retrievers;
 
-use JsonSchema\Uri\Retrievers\PredefinedArray;
+use FPJsonSchema\Uri\Retrievers\PredefinedArray;
 use PHPUnit\Framework\TestCase;
 
 /**
@@ -31,7 +31,7 @@ class PredefinedArrayTest extends TestCase
 
     public function testRetrieveNonExistsingSchema(): void
     {
-        $this->expectException(\JsonSchema\Exception\ResourceNotFoundException::class);
+        $this->expectException(\FPJsonSchema\Exception\ResourceNotFoundException::class);
         $this->retriever->retrieve('http://acme.com/schemas/plop#');
     }
 

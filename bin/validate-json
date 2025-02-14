@@ -191,8 +191,8 @@ if ($pathSchema[0] == '/') {
     $pathSchema = 'file://' . $pathSchema;
 }
 
-$resolver = new JsonSchema\Uri\UriResolver();
-$retriever = new JsonSchema\Uri\UriRetriever();
+$resolver = new FPJsonSchema\Uri\UriResolver();
+$retriever = new FPJsonSchema\Uri\UriRetriever();
 try {
     $urlSchema = $resolver->resolve($pathSchema, $urlData);
 
@@ -206,7 +206,7 @@ try {
     output($e->getMessage() . "\n");
     exit(2);
 }
-$refResolver = new JsonSchema\SchemaStorage($retriever, $resolver);
+$refResolver = new FPJsonSchema\SchemaStorage($retriever, $resolver);
 $schema = $refResolver->resolveRef($urlSchema);
 
 if (isset($arOptions['--dump-schema'])) {
@@ -216,7 +216,7 @@ if (isset($arOptions['--dump-schema'])) {
 }
 
 try {
-    $validator = new JsonSchema\Validator();
+    $validator = new FPJsonSchema\Validator();
     $validator->validate($data, $schema);
 
     if ($validator->isValid()) {

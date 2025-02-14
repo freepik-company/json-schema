@@ -1,8 +1,8 @@
 <?php
 
-namespace JsonSchema\Tests\Exception;
+namespace FPJsonSchema\Tests\Exception;
 
-use JsonSchema\Exception\InvalidSchemaMediaTypeException;
+use FPJsonSchema\Exception\InvalidSchemaMediaTypeException;
 use PHPUnit\Framework\TestCase;
 
 class InvalidSchemaMediaTypeExceptionTest extends TestCase
@@ -11,7 +11,7 @@ class InvalidSchemaMediaTypeExceptionTest extends TestCase
     {
         $exception = new InvalidSchemaMediaTypeException();
         self::assertInstanceOf('\RuntimeException', $exception);
-        self::assertInstanceOf('\JsonSchema\Exception\RuntimeException', $exception);
-        self::assertInstanceOf('\JsonSchema\Exception\ExceptionInterface', $exception);
+        self::assertInstanceOf('\FPJsonSchema\Exception\RuntimeException', $exception);
+        self::assertInstanceOf('\FPJsonSchema\Exception\ExceptionInterface', $exception);
     }
 }

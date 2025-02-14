@@ -1,15 +1,15 @@
 <?php
 
 /*
- * This file is part of the JsonSchema package.
+ * This file is part of the FPJsonSchema package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace JsonSchema\Tests;
+namespace FPJsonSchema\Tests;
 
-use JsonSchema\ConstraintError;
+use FPJsonSchema\ConstraintError;
 use PHPUnit\Framework\TestCase;
 
 class ConstraintErrorTest extends TestCase
@@ -24,7 +24,7 @@ class ConstraintErrorTest extends TestCase
     {
         $e = ConstraintError::MISSING_ERROR();
 
-        $this->expectException('\JsonSchema\Exception\InvalidArgumentException');
+        $this->expectException('\FPJsonSchema\Exception\InvalidArgumentException');
         $this->expectExceptionMessage('Missing error message for missingError');
 
         $e->getMessage();
