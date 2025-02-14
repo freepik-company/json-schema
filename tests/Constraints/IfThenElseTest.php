@@ -13,12 +13,12 @@ class IfThenElseTest extends BaseTestCase
 {
     protected $validateSchema = true;
 
-    public function getInvalidTests()
+    public function getInvalidTests(): array
     {
-        return array(
+        return [
             // If "foo" === "bar", then "bar" must be defined, else Validation Failed.
             // But "foo" === "bar" and "bar" is not defined.
-            array(
+            [
                 '{
                   "foo":"bar"
                 }',
@@ -34,11 +34,11 @@ class IfThenElseTest extends BaseTestCase
                     },
                     "then": {"required": ["bar"]},
                     "else": false
-                }'
-            ),
+                }',
+            ],
             // If "foo" === "bar", then "bar" must be defined, else Validation Failed.
             // But "foo" !== "bar".
-            array(
+            [
                 '{
                   "foo":"baz"
                 }',
@@ -54,11 +54,11 @@ class IfThenElseTest extends BaseTestCase
                     },
                     "then": {"required": ["bar"]},
                     "else": false
-                }'
-            ),
+                }',
+            ],
             // If "foo" === "bar", then "bar" must === "baz", else Validation Failed.
             // But "foo" === "bar" and "bar" !== "baz".
-            array(
+            [
                 '{
                   "foo":"bar",
                   "bar":"potato"
@@ -78,11 +78,11 @@ class IfThenElseTest extends BaseTestCase
                         "required": ["bar"]
                     },
                     "else": false
-                }'
-            ),
+                }',
+            ],
             // Always go to "else".
             // But schema is invalid.
-            array(
+            [
                 '{
                   "foo":"bar"
                 }',
@@ -98,11 +98,11 @@ class IfThenElseTest extends BaseTestCase
                         "properties": {"bar": {"enum": ["baz"]}},
                         "required": ["bar"]
                     }
-                }'
-            ),
+                }',
+            ],
             // Always go to "then".
             // But schema is invalid.
-            array(
+            [
                 '{
                   "foo":"bar"
                 }',
@@ -118,16 +118,16 @@ class IfThenElseTest extends BaseTestCase
                         "required": ["bar"]
                     },
                     "else": true
-                }'
-            )
-        );
+                }',
+            ],
+        ];
     }
 
-    public function getValidTests()
+    public function getValidTests(): array
     {
-        return array(
+        return [
             // Always validate.
-            array(
+            [
                 '{
                   "foo":"bar"
                 }',
@@ -140,10 +140,10 @@ class IfThenElseTest extends BaseTestCase
                     "if": true,
                     "then": true,
                     "else": false
-                }'
-            ),
+                }',
+            ],
             // Always validate schema in then.
-            array(
+            [
                 '{
                   "foo":"bar"
                 }',
@@ -159,10 +159,10 @@ class IfThenElseTest extends BaseTestCase
                         "required": ["foo"]
                     },
                     "else": false
-                }'
-            ),
+                }',
+            ],
             // Always validate schema in else.
-            array(
+            [
                 '{
                   "foo":"bar"
                 }',
@@ -178,10 +178,10 @@ class IfThenElseTest extends BaseTestCase
                         "properties": {"foo": {"enum": ["bar"]}},
                         "required": ["foo"]
                     }
-                }'
-            ),
+                }',
+            ],
             // "If" is evaluated to true, so "then" is to validate.
-            array(
+            [
                 '{
                   "foo":"bar",
                   "bar":"baz"
@@ -201,10 +201,10 @@ class IfThenElseTest extends BaseTestCase
                         "required": ["bar"]
                     },
                     "else": false
-                }'
-            ),
+                }',
+            ],
             // "If" is evaluated to false, so "else" is to validate.
-            array(
+            [
                 '{
                   "foo":"bar",
                   "bar":"baz"
@@ -224,8 +224,8 @@ class IfThenElseTest extends BaseTestCase
                         "properties": {"bar": {"enum": ["baz"]}},
                         "required": ["bar"]
                     }
-                }'
-            ),
-        );
+                }',
+            ],
+        ];
     }
 }
