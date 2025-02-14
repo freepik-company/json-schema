@@ -1,8 +1,8 @@
 <?php
 
-namespace JsonSchema\Tests;
+namespace FPJsonSchema\Tests;
 
-use JsonSchema\Validator;
+use FPJsonSchema\Validator;
 use PHPUnit\Framework\TestCase;
 
 class ValidatorTest extends TestCase
@@ -31,7 +31,7 @@ class ValidatorTest extends TestCase
 
         $validator = new Validator();
 
-        $this->expectException('\JsonSchema\Exception\InvalidArgumentException');
+        $this->expectException('\FPJsonSchema\Exception\InvalidArgumentException');
         $validator->validate($data, $schema);
     }
 

@@ -1,8 +1,8 @@
 <?php
 
-namespace JsonSchema\Tests\Exception;
+namespace FPJsonSchema\Tests\Exception;
 
-use JsonSchema\Exception\UnresolvableJsonPointerException;
+use FPJsonSchema\Exception\UnresolvableJsonPointerException;
 use PHPUnit\Framework\TestCase;
 
 class UnresolvableJsonPointerExceptionTest extends TestCase
@@ -11,7 +11,7 @@ class UnresolvableJsonPointerExceptionTest extends TestCase
     {
         $exception = new UnresolvableJsonPointerException();
         self::assertInstanceOf('\InvalidArgumentException', $exception);
-        self::assertInstanceOf('\JsonSchema\Exception\InvalidArgumentException', $exception);
-        self::assertInstanceOf('\JsonSchema\Exception\ExceptionInterface', $exception);
+        self::assertInstanceOf('\FPJsonSchema\Exception\InvalidArgumentException', $exception);
+        self::assertInstanceOf('\FPJsonSchema\Exception\ExceptionInterface', $exception);
     }
 }

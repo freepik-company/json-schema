@@ -1,8 +1,8 @@
 <?php
 
-namespace JsonSchema\Tests;
+namespace FPJsonSchema\Tests;
 
-use JsonSchema\Rfc3339;
+use FPJsonSchema\Rfc3339;
 use PHPUnit\Framework\TestCase;
 
 class Rfc3339Test extends TestCase

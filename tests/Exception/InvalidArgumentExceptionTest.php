@@ -1,8 +1,8 @@
 <?php
 
-namespace JsonSchema\Tests\Exception;
+namespace FPJsonSchema\Tests\Exception;
 
-use JsonSchema\Exception\InvalidArgumentException;
+use FPJsonSchema\Exception\InvalidArgumentException;
 use PHPUnit\Framework\TestCase;
 
 class InvalidArgumentExceptionTest extends TestCase
@@ -11,6 +11,6 @@ class InvalidArgumentExceptionTest extends TestCase
     {
         $exception = new InvalidArgumentException();
         self::assertInstanceOf('\InvalidArgumentException', $exception);
-        self::assertInstanceOf('\JsonSchema\Exception\ExceptionInterface', $exception);
+        self::assertInstanceOf('\FPJsonSchema\Exception\ExceptionInterface', $exception);
     }
 }

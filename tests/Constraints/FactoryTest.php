@@ -1,23 +1,23 @@
 <?php
 
 /*
- * This file is part of the JsonSchema package.
+ * This file is part of the FPJsonSchema package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace JsonSchema\Tests\Constraints;
+namespace FPJsonSchema\Tests\Constraints;
 
-use JsonSchema\Constraints\Constraint;
-use JsonSchema\Constraints\Factory;
-use JsonSchema\Entity\JsonPointer;
+use FPJsonSchema\Constraints\Constraint;
+use FPJsonSchema\Constraints\Factory;
+use FPJsonSchema\Entity\JsonPointer;
 use PHPUnit\Framework\TestCase;
 
 /**
  * Class MyBadConstraint
  *
- * @package JsonSchema\Tests\Constraints
+ * @package FPJsonSchema\Tests\Constraints
  */
 class MyBadConstraint
 {
@@ -26,7 +26,7 @@ class MyBadConstraint
 /**
  * Class MyStringConstraint
  *
- * @package JsonSchema\Tests\Constraints
+ * @package FPJsonSchema\Tests\Constraints
  */
 class MyStringConstraint extends Constraint
 {
@@ -58,23 +58,23 @@ class FactoryTest extends TestCase
         $constraint = $this->factory->createInstanceFor($constraintName);
 
         $this->assertInstanceOf($expectedClass, $constraint);
-        $this->assertInstanceOf('JsonSchema\Constraints\ConstraintInterface', $constraint);
+        $this->assertInstanceOf('FPJsonSchema\Constraints\ConstraintInterface', $constraint);
     }
 
     public function constraintNameProvider(): array
     {
         return [
-            ['array', 'JsonSchema\Constraints\CollectionConstraint'],
-            ['collection', 'JsonSchema\Constraints\CollectionConstraint'],
-            ['object', 'JsonSchema\Constraints\ObjectConstraint'],
-            ['type', 'JsonSchema\Constraints\TypeConstraint'],
-            ['undefined', 'JsonSchema\Constraints\UndefinedConstraint'],
-            ['string', 'JsonSchema\Constraints\StringConstraint'],
-            ['number', 'JsonSchema\Constraints\NumberConstraint'],
-            ['enum', 'JsonSchema\Constraints\EnumConstraint'],
-            ['const', 'JsonSchema\Constraints\ConstConstraint'],
-            ['format', 'JsonSchema\Constraints\FormatConstraint'],
-            ['schema', 'JsonSchema\Constraints\SchemaConstraint'],
+            ['array', 'FPJsonSchema\Constraints\CollectionConstraint'],
+            ['collection', 'FPJsonSchema\Constraints\CollectionConstraint'],
+            ['object', 'FPJsonSchema\Constraints\ObjectConstraint'],
+            ['type', 'FPJsonSchema\Constraints\TypeConstraint'],
+            ['undefined', 'FPJsonSchema\Constraints\UndefinedConstraint'],
+            ['string', 'FPJsonSchema\Constraints\StringConstraint'],
+            ['number', 'FPJsonSchema\Constraints\NumberConstraint'],
+            ['enum', 'FPJsonSchema\Constraints\EnumConstraint'],
+            ['const', 'FPJsonSchema\Constraints\ConstConstraint'],
+            ['format', 'FPJsonSchema\Constraints\FormatConstraint'],
+            ['schema', 'FPJsonSchema\Constraints\SchemaConstraint'],
         ];
     }
 
@@ -85,7 +85,7 @@ class FactoryTest extends TestCase
      */
     public function testExceptionWhenCreateInstanceForInvalidConstraintName($constraintName): void
     {
-        $this->expectException('JsonSchema\Exception\InvalidArgumentException');
+        $this->expectException('FPJsonSchema\Exception\InvalidArgumentException');
         $this->factory->createInstanceFor($constraintName);
     }
 
@@ -98,24 +98,24 @@ class FactoryTest extends TestCase
 
     public function testSetConstraintClassExistsCondition(): void
     {
-        $this->expectException(\JsonSchema\Exception\InvalidArgumentException::class);
+        $this->expectException(\FPJsonSchema\Exception\InvalidArgumentException::class);
 
         $this->factory->setConstraintClass('string', 'SomeConstraint');
     }
 
     public function testSetConstraintClassImplementsCondition(): void
     {
-        $this->expectException(\JsonSchema\Exception\InvalidArgumentException::class);
+        $this->expectException(\FPJsonSchema\Exception\InvalidArgumentException::class);
 
-        $this->factory->setConstraintClass('string', 'JsonSchema\Tests\Constraints\MyBadConstraint');
+        $this->factory->setConstraintClass('string', 'FPJsonSchema\Tests\Constraints\MyBadConstraint');
     }
 
     public function testSetConstraintClassInstance(): void
     {
-        $this->factory->setConstraintClass('string', 'JsonSchema\Tests\Constraints\MyStringConstraint');
+        $this->factory->setConstraintClass('string', 'FPJsonSchema\Tests\Constraints\MyStringConstraint');
         $constraint = $this->factory->createInstanceFor('string');
-        $this->assertInstanceOf('JsonSchema\Tests\Constraints\MyStringConstraint', $constraint);
-        $this->assertInstanceOf('JsonSchema\Constraints\ConstraintInterface', $constraint);
+        $this->assertInstanceOf('FPJsonSchema\Tests\Constraints\MyStringConstraint', $constraint);
+        $this->assertInstanceOf('FPJsonSchema\Constraints\ConstraintInterface', $constraint);
     }
 
     public function testCheckMode(): void

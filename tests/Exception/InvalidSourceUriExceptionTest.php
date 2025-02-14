@@ -1,8 +1,8 @@
 <?php
 
-namespace JsonSchema\Tests\Exception;
+namespace FPJsonSchema\Tests\Exception;
 
-use JsonSchema\Exception\InvalidSourceUriException;
+use FPJsonSchema\Exception\InvalidSourceUriException;
 use PHPUnit\Framework\TestCase;
 
 class InvalidSourceUriExceptionTest extends TestCase
@@ -11,7 +11,7 @@ class InvalidSourceUriExceptionTest extends TestCase
     {
         $exception = new InvalidSourceUriException();
         self::assertInstanceOf('\InvalidArgumentException', $exception);
-        self::assertInstanceOf('\JsonSchema\Exception\InvalidArgumentException', $exception);
-        self::assertInstanceOf('\JsonSchema\Exception\ExceptionInterface', $exception);
+        self::assertInstanceOf('\FPJsonSchema\Exception\InvalidArgumentException', $exception);
+        self::assertInstanceOf('\FPJsonSchema\Exception\ExceptionInterface', $exception);
     }
 }

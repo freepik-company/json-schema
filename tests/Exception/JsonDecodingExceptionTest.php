@@ -1,8 +1,8 @@
 <?php
 
-namespace JsonSchema\Tests\Exception;
+namespace FPJsonSchema\Tests\Exception;
 
-use JsonSchema\Exception\JsonDecodingException;
+use FPJsonSchema\Exception\JsonDecodingException;
 use PHPUnit\Framework\TestCase;
 
 class JsonDecodingExceptionTest extends TestCase
@@ -11,8 +11,8 @@ class JsonDecodingExceptionTest extends TestCase
     {
         $exception = new JsonDecodingException();
         self::assertInstanceOf('\RuntimeException', $exception);
-        self::assertInstanceOf('\JsonSchema\Exception\RuntimeException', $exception);
-        self::assertInstanceOf('\JsonSchema\Exception\ExceptionInterface', $exception);
+        self::assertInstanceOf('\FPJsonSchema\Exception\RuntimeException', $exception);
+        self::assertInstanceOf('\FPJsonSchema\Exception\ExceptionInterface', $exception);
     }
 
     public function testDefaultMessage()

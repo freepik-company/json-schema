@@ -1,8 +1,8 @@
 <?php
 
-namespace JsonSchema\Tests\Uri;
+namespace FPJsonSchema\Tests\Uri;
 
-use JsonSchema\Uri\UriResolver;
+use FPJsonSchema\Uri\UriResolver;
 use PHPUnit\Framework\TestCase;
 
 class UriResolverTest extends TestCase
@@ -116,7 +116,7 @@ class UriResolverTest extends TestCase
 
     public function testResolveRelativeUriNoBase(): void
     {
-        $this->expectException(\JsonSchema\Exception\UriResolverException::class);
+        $this->expectException(\FPJsonSchema\Exception\UriResolverException::class);
         $this->resolver->resolve('bar.json', null);
     }
 
@@ -207,10 +207,10 @@ class UriResolverTest extends TestCase
     public function testRelativeFileAsRoot(): void
     {
         $this->assertEquals(
-            'file://' . getcwd() . '/src/JsonSchema/Validator.php',
+            'file://' . getcwd() . '/src/FPJsonSchema/Validator.php',
             $this->resolver->resolve(
                 'Validator.php',
-                'src/JsonSchema/SchemaStorage.php'
+                'src/FPJsonSchema/SchemaStorage.php'
             )
         );
     }
@@ -218,10 +218,10 @@ class UriResolverTest extends TestCase
     public function testRelativeDirectoryAsRoot(): void
     {
         $this->assertEquals(
-            'file://' . getcwd() . '/src/JsonSchema/Validator.php',
+            'file://' . getcwd() . '/src/FPJsonSchema/Validator.php',
             $this->resolver->resolve(
                 'Validator.php',
-                'src/JsonSchema'
+                'src/FPJsonSchema'
             )
         );
     }

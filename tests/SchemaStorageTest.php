@@ -1,17 +1,17 @@
 <?php
 
 /*
- * This file is part of the JsonSchema package.
+ * This file is part of the FPJsonSchema package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace JsonSchema\Tests;
+namespace FPJsonSchema\Tests;
 
-use JsonSchema\SchemaStorage;
-use JsonSchema\Uri\UriRetriever;
-use JsonSchema\Validator;
+use FPJsonSchema\SchemaStorage;
+use FPJsonSchema\Uri\UriRetriever;
+use FPJsonSchema\Validator;
 use PHPUnit\Framework\TestCase;
 
 class SchemaStorageTest extends TestCase
@@ -21,7 +21,7 @@ class SchemaStorageTest extends TestCase
         $mainSchema = $this->getMainSchema();
         $mainSchemaPath = 'http://www.example.com/schema.json';
 
-        $uriRetriever = $this->prophesize('JsonSchema\UriRetrieverInterface');
+        $uriRetriever = $this->prophesize('FPJsonSchema\UriRetrieverInterface');
         $uriRetriever->retrieve($mainSchemaPath)->willReturn($mainSchema)->shouldBeCalled();
 
         $schemaStorage = new SchemaStorage($uriRetriever->reveal());
@@ -55,7 +55,7 @@ class SchemaStorageTest extends TestCase
         $schema3Path = 'http://www.my-domain.com/schema3.json';
 
         /** @var UriRetriever $uriRetriever */
-        $uriRetriever = $this->prophesize('JsonSchema\UriRetrieverInterface');
+        $uriRetriever = $this->prophesize('FPJsonSchema\UriRetrieverInterface');
         $uriRetriever->retrieve($mainSchemaPath)->willReturn($mainSchema)->shouldBeCalled();
         $uriRetriever->retrieve($schema2Path)->willReturn($schema2)->shouldBeCalled();
         $uriRetriever->retrieve($schema3Path)->willReturn($schema3)->shouldBeCalled();
@@ -102,13 +102,13 @@ class SchemaStorageTest extends TestCase
 
     public function testUnresolvableJsonPointExceptionShouldBeThrown(): void
     {
-        $this->expectException('JsonSchema\Exception\UnresolvableJsonPointerException');
+        $this->expectException('FPJsonSchema\Exception\UnresolvableJsonPointerException');
         $this->expectExceptionMessage('File: http://www.example.com/schema.json is found, but could not resolve fragment: #/definitions/car');
 
         $mainSchema = $this->getInvalidSchema();
         $mainSchemaPath = 'http://www.example.com/schema.json';
 
-        $uriRetriever = $this->prophesize('JsonSchema\UriRetrieverInterface');
+        $uriRetriever = $this->prophesize('FPJsonSchema\UriRetrieverInterface');
         $uriRetriever->retrieve($mainSchemaPath)
             ->willReturn($mainSchema)
             ->shouldBeCalled();
@@ -119,7 +119,7 @@ class SchemaStorageTest extends TestCase
 
     public function testResolveRefWithNoAssociatedFileName(): void
     {
-        $this->expectException('JsonSchema\Exception\UnresolvableJsonPointerException');
+        $this->expectException('FPJsonSchema\Exception\UnresolvableJsonPointerException');
         $this->expectExceptionMessage("Could not resolve fragment '#': no file is defined");
 
         $schemaStorage = new SchemaStorage();
@@ -264,14 +264,14 @@ class SchemaStorageTest extends TestCase
     {
         $s = new SchemaStorage();
         $s->addSchema('http://json-schema.org/draft-04/schema#');
-        $this->assertInstanceOf('\JsonSchema\Uri\UriRetriever', $s->getUriRetriever());
+        $this->assertInstanceOf('\FPJsonSchema\Uri\UriRetriever', $s->getUriRetriever());
     }
 
     public function testGetUriResolver(): void
     {
         $s = new SchemaStorage();
         $s->addSchema('http://json-schema.org/draft-04/schema#');
-        $this->assertInstanceOf('\JsonSchema\Uri\UriResolver', $s->getUriResolver());
+        $this->assertInstanceOf('\FPJsonSchema\Uri\UriResolver', $s->getUriResolver());
     }
 
     public function testMetaSchemaFixes(): void
@@ -291,7 +291,7 @@ class SchemaStorageTest extends TestCase
     {
         $schemaOne = json_decode('{"id": "test/schema", "$ref": "../test2/schema2"}');
 
-        $uriRetriever = $this->prophesize('JsonSchema\UriRetrieverInterface');
+        $uriRetriever = $this->prophesize('FPJsonSchema\UriRetrieverInterface');
         $uriRetriever->retrieve('test/schema')->willReturn($schemaOne)->shouldBeCalled();
 
         $s = new SchemaStorage($uriRetriever->reveal());

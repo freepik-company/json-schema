@@ -1,17 +1,17 @@
 <?php
 
 /*
- * This file is part of the JsonSchema package.
+ * This file is part of the FPJsonSchema package.
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
 
-namespace JsonSchema\Tests\Constraints;
+namespace FPJsonSchema\Tests\Constraints;
 
-use JsonSchema\Constraints\Factory;
-use JsonSchema\SchemaStorage;
-use JsonSchema\Validator;
+use FPJsonSchema\Constraints\Factory;
+use FPJsonSchema\SchemaStorage;
+use FPJsonSchema\Validator;
 
 class LongArraysTest extends VeryBaseTestCase
 {
